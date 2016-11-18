@@ -176,4 +176,84 @@ article p:last-of-type {
 
 **Video 23: N-th Child Pseudo Classes** 
 
-- 
+- Allows the selection of specific child elements. Arguments can be passed  
+```CSS
+li:nth-child(1), li:nth-child(7) {
+    font-weight: bold;
+}
+``` 
+will make the 1st and 7th elements bold, given a list  
+```HTML
+      <li>Item List</li>
+      <li>item01</li>
+      <li>item02</li>
+      <li>item03</li>
+      <li>item04</li>
+      <li>item05</li>
+      <li>Half Way TITLE</li>
+      <li>item06</li>
+      <li>item07</li>
+      <li>item08</li>
+      <li>item09</li>
+      <li>item10</li>
+```
+
+- You can also pass in keywords as Arguments
+```CSS
+li:nth-child(even){
+    background: grey;
+}
+
+li:nth-child(odd) {
+    background: pink;
+}
+```
+
+- Or formulas  
+```CSS
+li:nth-child(3n + 1) {
+    color: green;
+}
+```
+
+- Okay, this is pretty cool stuff. 
+
+**Video 24: Nth of Type Pseudo Classes**  
+
+- You can also use the nth-of-type selector to select a particular number of a certain type of element, so you can select the first article using:  
+```CSS
+article:nth-of-type(1) {
+    background: grey;
+}
+```  
+- Formulas and keywords can be used in the same way as with the nth-child selector.  
+
+**Video 25: Combining Selectos**    
+
+- You can combine selectors, such as element and class selectors
+```CSS  
+article.featured-content {
+    background: red;
+}
+
+div.featured-content {
+    background: blue;
+}
+```
+
+**Video 26: The Universal Selector** 
+- Allows you to style every element or tag within one rule using the star operator. A basic syntax example is:
+```CSS
+*{
+    color: blue;
+}
+```
+
+- Using the body selector doesn't override default browser styling, but the universal selector does.
+- Generally should be avoided, but useful for CSS resets. 
+
+This is roughly the half-way point of the Net Ninja series and it also concludes the section on selectors before moving into fonts and text. I'll probably take a break to check out the CodeSchool offerings before coming back to Net Ninja, but so far this is a great video tutorial. I'm also practicing adding each of these techniques to the CSS Zen Garden template as I go along, to solidify what I'm learning. Right now I'm not getting into styling my Zen Garden; I'm just changing things around using the techniques that are being covered. So far, that seems to be helpful. 
+
+
+
+
