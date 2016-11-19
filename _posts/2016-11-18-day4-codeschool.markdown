@@ -1,3 +1,7 @@
+I'm about halfway through the CSS Cross Country course on codeschool and so far I'm not impressed. At first, the site kept glitching out on me, so I went back and started at Frontend Foundations. I got about halfway through that and then circled back to CSS Cross Country. Tomorrow, I'll probably just go back to Net Ninja. 
+
+==Frontend Foundations
+
 **Hexadecimal colors**
 - Numbers are in (R,G,B)
 - Hexadecimal numbers run from 0-15, but use letters for numbers above 9
@@ -82,9 +86,14 @@
 - Classes are used to differentiate the divs.
 - Natural tendency is to take up the entire width of the page, but you can change that by setting the width to a different value.
     at this point, setting the margin to 0, it will center the div.
+- Centering content: If you want to center an entire block-level fixed-width tag, you set the left and right margins to auto.
+```CSS  
+margin: 30px auto 0 auto;
+```
+    If you want to center child inside a block-level tag, set the text-align of the children to center
 
 
-=CSS Cross Crountry
+==CSS Cross Crountry
 **Level 3: Box Bindings**
 - The Box Model: An imaginary box outlines each DOM element.
 - Have to be aware of what happens if it flows outside of your box.
@@ -109,4 +118,6 @@ top: -0.5em;
 - Z-Index
 - z-index is used to manually adjust overlap. 
 - z-index only applies to elements that have a position value other than static. 
+
+
 
