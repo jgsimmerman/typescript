@@ -1,7 +1,16 @@
+---
+layout: post
+title: "Day 5: CSS for Beginners, by Net Ninja (Part 3)" 
+date: 2016-11-19
+categories: CSS
+---
+
 **Video 27: Font Size**  
 - Two ways: Absolute (px); Relative (em, %)
-- In the example, inheritance and overriding styles are used to demonstrate em'styles  
+- In the example, inheritance and overriding styles are used to demonstrate em styles 
+
 ```CSS
+
 article{
     font-size: 16px;
 }
@@ -20,7 +29,9 @@ article p{
 
 **Video 28: Font Family**  
 - Using font-stacks of similar fonts to combat cases where the user doesn't have a font installed  
+
 ```CSS
+
 article h2, article p{
     font-family: arial, helvetica, sans-serif;
 }
@@ -36,7 +47,9 @@ article h2, article p{
 **Video 30: Font Weight**  
 - Changing font-weight to lighter, bolder, etc only works if the font has those settings. 
 - In addition to lighter, normal, inherit, bold, and bolder, you can also use the numbers 100, 200, 300, ..., 900. Typically 100-300 is in the lighter range, 400-600 is the normal range, and 700-900 is in the bolder range. Fonts will usually not have more than three numbers, one in each  range.  
+
 ```CSS 
+
 h1{
     font-weight: bold;
 }
@@ -50,7 +63,9 @@ p{
 **Video 31: Text Transform**  
 - Change the letter casing (hello => Hello)
 - Options are: capitalize, full-width, inherit, lowercase, none, uppercase.  
+
 ```HTML
+
  <body>
        <p class="welcome">Welcome!</p>
         <div id="header">
@@ -71,6 +86,7 @@ p{
     </body>
 ```  
 ```CSS
+
 #header p{
     text-transform: capitalize;
 }
@@ -86,7 +102,9 @@ body > p{
 
 **Video 32: Text Color**  
 - Two types of color property: text/foreground color; background color.   
+
 ```CSS  
+
 #header h1{
     color: chocolate;
 }
@@ -109,7 +127,9 @@ body > p{
 
 **Video 33: Styling Links**  
 - Not much to this video. Basic transformations applied to links.
+
 ```CSS
+
 a{
     color: crimson;
     text-decoration: none;
@@ -132,7 +152,9 @@ a:hover{
 
 - letter-spacing: can use ems/% or px.
 - line-height: tricky, because the if the vertical height of the letters is set to 12px, then it fills up an entire 12px line-height. We're specifying the height of the whole line, not the height of the space between the lines. For doublespacing, you need 24 pixels.
+
 ```CSS
+
 p{
     font-size: 12px;
     /*letter-spacing: 2px;*/
@@ -147,7 +169,9 @@ p{
 
 **Video 35: Paragraph Spacing**  
 - To set paragraph spacing, we use a property called margin (this is part of the Box Model).   
+
 ```CSS
+
 p{
     font-size 14px;
     line-height 2em;
@@ -166,7 +190,9 @@ p{
 - You can use Chrome Dev Tools to visually inspect the box. 
 
 - When you specify "width: 100%" then it can cause an overflow, because it takes up 100% of the element, plus it has padding, border, and margin.
+
 ```CSS
+
 .box{
     margin: 30px;
     padding: 30px;
@@ -177,7 +203,9 @@ p{
 - If we specify a width of 200px, then we still have to add the margin, padding, and border; so the overall width is 322= 200 +30 + 30 + 30 +30 +1 + 1
 
 **Video 37: Margins**
+
 ```CSS
+
 margin: 30px 15px;
 ```
 - This will set the top and bottom margin to 30px and the right and left to 15px. 
@@ -185,7 +213,9 @@ margin: 30px 15px;
 - Margin Collapse: When you have two elements stacked on top of eachother and they both have a margin associated with them, they combine when they meet eachother, rather than stacking.You can observe this in Dev Tools. 
 - margin auto: 30px auto; will center the box within it's parent element.
 - You can also use percentages to center everything, and it will also work for responsive design.
+
 ```CSS
+
 .box{
     margin: 30px 25%;
     border: 1px solid #000;
@@ -196,7 +226,9 @@ In this case, the box is centered because the width is set to 50% and the margin
 
 **Video 38: Padding**
 - Internal spacing property within the confines of the element itself. Like othe boxes, it can be inspected in Dev tools.
+
 ```CSS
+
 .box{
     margin: 30px;
     padding: 30px 20px 10px 5px;
@@ -207,7 +239,9 @@ In this case, the box is centered because the width is set to 50% and the margin
 
 **Video 39: Padding and Margin Long-hand**  
 - Specify one particular side to apply margin or padding to.
+
 ```CSS 
+
 .box{
     margin-top: 30px;
     border-left: 5px solid #000;

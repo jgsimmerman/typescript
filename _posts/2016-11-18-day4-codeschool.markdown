@@ -1,6 +1,13 @@
-I'm about halfway through the CSS Cross Country course on codeschool and so far I'm not impressed. At first, the site kept glitching out on me, so I went back and started at Frontend Foundations. I got about halfway through that and then circled back to CSS Cross Country. Tomorrow, I'll probably just go back to Net Ninja. 
+---
+layout: post
+title: "Day 4: CodeSchool" 
+date: 2016-11-18.
+categories: CSS
+---
 
-==Frontend Foundations
+I'm about halfway through the CSS Cross Country course on codeschool and so far I'm not impressed. At first, the site kept glitching out on me, so I went back and started at Frontend Foundations. I got about halfway through that and then circled back to CSS Cross Country. Tomorrow, I'll probably just go back to Net Ninja. CodeSchool does have an awesome git course, though. I'll give them that much.
+
+##Frontend Foundations##
 
 **Hexadecimal colors**
 - Numbers are in (R,G,B)
@@ -44,18 +51,21 @@ I'm about halfway through the CSS Cross Country course on codeschool and so far 
 - If you don't override browser defaults, the default padding, margin, and borders will still show up.
 - Suggested process after resetting browser defaults:
     1. Start with the body element and add padding to push all of the children away from the edges of the screen
+   
     ```CSS  
     body{
         padding: 20px 20px 20px 20px;
     }
     ```
     2. Add a top and bottom margin to the h1 tag to add space above and below the title
+   
     ```CSS  
     h1 {
         margin: 10px 0 15px 0;
     }
     ```
     3. Repeat for h2
+   
     ```CSS  
     h2 {
         margin: 10px 0 20px 0;
@@ -63,6 +73,7 @@ I'm about halfway through the CSS Cross Country course on codeschool and so far 
     ```
     4. Do the same for h3
     5. Think about where borders might be useful. Also consider padding to push the border away from the content area 
+   
     ```CSS  
     h3 {
         margin: 15px 0 15px 0;
@@ -71,6 +82,7 @@ I'm about halfway through the CSS Cross Country course on codeschool and so far 
     }
     ```
     6. We turned off padding during the reset, so now list items are pushing against the edge of the box. 
+   
     ```CSS  
     ul {
         padding: 0 0 0 50px;
@@ -87,13 +99,14 @@ I'm about halfway through the CSS Cross Country course on codeschool and so far 
 - Natural tendency is to take up the entire width of the page, but you can change that by setting the width to a different value.
     at this point, setting the margin to 0, it will center the div.
 - Centering content: If you want to center an entire block-level fixed-width tag, you set the left and right margins to auto.
+
 ```CSS  
 margin: 30px auto 0 auto;
 ```
     If you want to center child inside a block-level tag, set the text-align of the children to center
 
 
-==CSS Cross Crountry
+##CSS Cross Crountry
 **Level 3: Box Bindings**
 - The Box Model: An imaginary box outlines each DOM element.
 - Have to be aware of what happens if it flows outside of your box.
@@ -108,6 +121,7 @@ margin: 30px auto 0 auto;
 - Using a value other than static makes it a "positioned element"
 - positioned elements may use the top, left, bottom, and right properties for placement
 - relative: renders them as static, but gives the ability to move them  
+
 ```CSS
 position: relative;
 top: -0.5em;

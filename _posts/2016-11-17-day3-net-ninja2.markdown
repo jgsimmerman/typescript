@@ -10,6 +10,7 @@ Today I continued working through the Net Ninja ["CSS for Beginners"](https://ww
  **VIDEO 14: Targeting Multiple Elements** 
 
  - Multiple elements can be targeted by one rule such as:
+
 ```CSS
 p, span, a, li {
     color: red;
@@ -20,18 +21,21 @@ p, span, a, li {
 ```
 **VIDEO 15: Descendant Selectors**
 - In the following code, everything nexted between the <body> tag would be considered a descendant of the body tag:
+
 ```HTML
 <body>
     ...
 </body>
 ```  
 - Descendants can be targeted by the id/class followed by the element, such as:
+
 ```CSS
 #main-content p {
     color: red;
 }
 ```
  - To go deeper, you could use:
+
 ```CSS
 #main-content #sub-content p {
     color: red;
@@ -43,6 +47,7 @@ or you could simply target the #sub-content id.
     
 - Child selectors are direct descents of a given tag, but further descendants aren't child selectors.
 - The child combinator > is used to select direct child elements, such as:
+
 ```CSS
 #main-content > p {
     color: red;
@@ -53,6 +58,7 @@ In this example, it target p elements that are a direct child element of main-co
 **VIDEO 17: Adjacent Selectors**
 
 - The adjacent combinator + is used to select each element that comes directly after another specified element:
+
 ```CSS
 #all-articles h2 + p {
     color: green;
@@ -73,6 +79,7 @@ In this example, it target p elements that are a direct child element of main-co
 
 - The attribute selector syntax follows the format element[attribute]{} such as span[class]{}
 - You can become more specific by doing something like:
+
 ```CSS
 a[title="Search Engine"] {
     color: red;
@@ -80,6 +87,7 @@ a[title="Search Engine"] {
 ```
     This will target links where title="Search Engine"
 - Pattern Matching: If you want to target all elements of a specific class without excluding elements that contain other classes, you can put a tilde in fron the of the = sign.
+
 ```CSS
 span[class~="deck"] {
     color: purple;
@@ -87,6 +95,7 @@ span[class~="deck"] {
 ```
 
     will target all of the spans of class deck, including the one with class halls:
+
 ```HTML
 <span class="deck halls">Yo, I'm a span tag too</span>
 <span class="deck">This is a deck of spans</spans>
@@ -94,6 +103,7 @@ span[class~="deck"] {
 ```
 
 - Similarly, if you want to target specific file types, you can place a $ before the = sign, as in:
+
 ```CSS
 a[href$="pdf"] {
     color: green;
@@ -101,6 +111,7 @@ a[href$="pdf"] {
 ```
 This will target all of the a links with an href that ends in pdf.
 - Another possibility is to single out links that start with something using the ^ symbol, such as:
+
 ```CSS
 a[href^="http"] {
     color: pink;
@@ -119,6 +130,7 @@ a[href^="http"] {
 - Structural: e.g. Parent-Child relationships, the 5th <li> tag in a list, a parent tag with no children, etc.
 
 - The syntax layout for Pseudo-Classes is: selector:keyword { declaration }
+
 ```CSS
 a:hover {
     color:red;
@@ -132,6 +144,7 @@ a:hover {
 **Video 20: Hover, Visited and Activve Psuedo Classes**  
 
 - Dynamic Pseudo Classes
+
 ```CSS
 a:hover {
     color: red;
@@ -150,6 +163,7 @@ a:visited {
 
 - Structural Pseudo Classes
 - Can target the first and last chil directly
+
 ```CSS
 article p:first-child {
     font-weight: bold;
@@ -163,6 +177,7 @@ article p:last-child {
 **Video 22: First and Last of-Type Pseudo Classes**  
 
 - Similar to first and last child, but targets a specific type of selector.
+
 ```CSS
 article p:first-of-type {
     font-weight: bold;    
@@ -177,12 +192,14 @@ article p:last-of-type {
 **Video 23: N-th Child Pseudo Classes** 
 
 - Allows the selection of specific child elements. Arguments can be passed  
+
 ```CSS
 li:nth-child(1), li:nth-child(7) {
     font-weight: bold;
 }
 ``` 
 will make the 1st and 7th elements bold, given a list  
+
 ```HTML
       <li>Item List</li>
       <li>item01</li>
@@ -199,6 +216,7 @@ will make the 1st and 7th elements bold, given a list
 ```
 
 - You can also pass in keywords as Arguments
+
 ```CSS
 li:nth-child(even){
     background: grey;
@@ -210,6 +228,7 @@ li:nth-child(odd) {
 ```
 
 - Or formulas  
+
 ```CSS
 li:nth-child(3n + 1) {
     color: green;
@@ -221,6 +240,7 @@ li:nth-child(3n + 1) {
 **Video 24: Nth of Type Pseudo Classes**  
 
 - You can also use the nth-of-type selector to select a particular number of a certain type of element, so you can select the first article using:  
+
 ```CSS
 article:nth-of-type(1) {
     background: grey;
@@ -231,6 +251,7 @@ article:nth-of-type(1) {
 **Video 25: Combining Selectos**    
 
 - You can combine selectors, such as element and class selectors
+
 ```CSS  
 article.featured-content {
     background: red;
@@ -243,6 +264,7 @@ div.featured-content {
 
 **Video 26: The Universal Selector** 
 - Allows you to style every element or tag within one rule using the star operator. A basic syntax example is:
+
 ```CSS
 *{
     color: blue;
