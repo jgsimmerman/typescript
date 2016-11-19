@@ -1,0 +1,112 @@
+**Hexadecimal colors**
+- Numbers are in (R,G,B)
+- Hexadecimal numbers run from 0-15, but use letters for numbers above 9
+    A = 10
+    B = 11
+    C = 12
+    D = 13
+    E = 14
+    F = 15
+- Calculate the first digit by 16 and the second by 1.
+    76 = (7*6) + (6*1) = 118 in hexadecimal
+    #7403AB
+        Red: (7*16) + (4*1) = 116
+        Green: (0*16) + (3*1) = 3
+        Blue: (10*16) + (11*1) + 171
+        = Purple
+**The Box Model**
+- Every tag shown in the body is contained in a rectangular box. 
+- Almost every element on a page is a block-level tag. 
+- Content box takes up the entire width of the container they're in, automatically pushing new blocks to the line below.
+- inline-level tags are not block-level. They do not take up the entire width of the container and just kind of flow along. 
+    anchor tags
+    img
+    inputs
+    labels
+- To turn a block-level to inline, set the the CSS to { display: inline; }
+
+- The Box Model descries the borders and spacing between the boxes of each tag. 
+- 4 Parts
+    1. Content Area: contains actual Content  
+    2. Padding: Layer just around all of the edges of the content area.  
+    3. Border: Added around the sides of the padding.
+    4. Margins: Added to the edges of the border. 
+- The size of the box is equal to content width + (padding-left + padding-right) + (border-left + border-right) + (margin-left + margin-right)  
+
+- When to use padding?
+    Control the size of a box without adjusting the size of the content inside the box. It effectively increases the size of the content box while the content doesn't get bigger. 
+    Margin is used to add space between two boxes. 
+
+- If you don't override browser defaults, the default padding, margin, and borders will still show up.
+- Suggested process after resetting browser defaults:
+    1. Start with the body element and add padding to push all of the children away from the edges of the screen
+    ```CSS  
+    body{
+        padding: 20px 20px 20px 20px;
+    }
+    ```
+    2. Add a top and bottom margin to the h1 tag to add space above and below the title
+    ```CSS  
+    h1 {
+        margin: 10px 0 15px 0;
+    }
+    ```
+    3. Repeat for h2
+    ```CSS  
+    h2 {
+        margin: 10px 0 20px 0;
+    }
+    ```
+    4. Do the same for h3
+    5. Think about where borders might be useful. Also consider padding to push the border away from the content area 
+    ```CSS  
+    h3 {
+        margin: 15px 0 15px 0;
+        border-bottom: 1px solid #CCCCCC;
+        padding-bottom: 3px;
+    }
+    ```
+    6. We turned off padding during the reset, so now list items are pushing against the edge of the box. 
+    ```CSS  
+    ul {
+        padding: 0 0 0 50px;
+    }
+    ol {
+        padding 0 0 0 50px;
+    }
+    ```
+
+**divs and Layout**  
+- A div is a block-level tag that's a generic way to group related content into sections on a page.
+- Example: <h1> and nav bar might go in one header div.
+- Classes are used to differentiate the divs.
+- Natural tendency is to take up the entire width of the page, but you can change that by setting the width to a different value.
+    at this point, setting the margin to 0, it will center the div.
+
+
+=CSS Cross Crountry
+**Level 3: Box Bindings**
+- The Box Model: An imaginary box outlines each DOM element.
+- Have to be aware of what happens if it flows outside of your box.
+- Overflow property: 4 main properties are visible / auto / hidden / scroll
+- visible- the default value, which allows content to extend beyond the container boundaries
+- auto: adds scrollbars when necessary
+- hidden: cuts off content that would extend beyond the boundary
+- scroll: adds a scrollbar at all times, regardless of if they're needed. 
+
+- Positioning
+- 4 position values: static /relative/ absolute / fixed (static is default)
+- Using a value other than static makes it a "positioned element"
+- positioned elements may use the top, left, bottom, and right properties for placement
+- relative: renders them as static, but gives the ability to move them  
+```CSS
+position: relative;
+top: -0.5em;
+```
+- Absolute positioning allows it to be removed from the normal flow and manually positioned
+- Fixed positining fixes an element to a specific place in the window, where it will stay regardless of scrolling.
+
+- Z-Index
+- z-index is used to manually adjust overlap. 
+- z-index only applies to elements that have a position value other than static. 
+
