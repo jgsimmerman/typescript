@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Day 2: CSS for Beginners, by Net Ninja" 
+title: "Day 2: CSS for Beginners, by Net Ninja (Part 1)" 
 date: 2016-11-16
 categories: CSS
 ---
