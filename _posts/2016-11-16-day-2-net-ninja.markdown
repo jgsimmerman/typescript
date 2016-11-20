@@ -7,11 +7,13 @@ categories: CSS
 
 Today I began working through the Net Ninja ["CSS for Beginners"](https://www.youtube.com/playlist?list=PL4cUxeGkcC9gQeDH6xYhmO-db2mhoTSrT) course on youtube. So far I've completed the first 13 modules, and I've taken these notes while coding along with the video series:
 
- **VIDEO 4: Basic CSS Syntax** 
+ **VIDEO 4: Basic CSS Syntax**   
+ 
+-Two components: selector and declaration  
 
-        -Two components: selector and declaration  
-        -Selectors can target tag names, ID's, classes, etc  
-        -Declaration contains properties (font-size) and values (10px).  
+-Selectors can target tag names, ID's, classes, etc  
+
+-Declaration contains properties (font-size) and values (10px).  
 
 
   **VIDEO 5: Inline and Embedded Styles**  
@@ -56,29 +58,37 @@ Today I began working through the Net Ninja ["CSS for Beginners"](https://www.yo
     *Elements: 1
 
 - In the HTML:
+{% highlight HTML %}
 
-      <div id=main-content">
-            <p>Hello there <strong> ninjas!</strong></p>
-      </div>
+ <div id=main-content">
+       <p>Hello there <strong> ninjas!</strong></p>
+ </div>
+      {% endhighlight %}
 
 -with the CSS:
+{% highlight CSS %}
 
-                  #main-content p{
-                        color: red;
-                  }
-                  strong{
-                        color: green;
-                  }
+#main-content p{
+      color: red;
+}
+
+strong{
+      color: green;
+ }
+{% endhighlight %}
 
 -The letters in the strong tag will be green, because the strong tag isn't inheriting the properties of the id main-content, but rather from the p element, which only has one point. Very cool!    
         
 **VIDEO 13: The IMPORTANT Declaration**    
 - Important Declaration prevents a rule from being overridden.    
+{% highlight CSS %}
+   p{ 
+       color: red !important;
+   }  
+{% endhighlight %}
 
-        p{ 
-            color: red !important;
-        }  
-    will ensure that p elements are always red.    
+- This will ensure that p elements are always red.  
+
 - This is a bad habit
 
 

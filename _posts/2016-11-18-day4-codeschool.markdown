@@ -11,20 +11,22 @@ I'm about halfway through the CSS Cross Country course on codeschool and so far 
 
 **Hexadecimal colors**
 - Numbers are in (R,G,B)
-- Hexadecimal numbers run from 0-15, but use letters for numbers above 9
-    A = 10
-    B = 11
-    C = 12
-    D = 13
-    E = 14
-    F = 15
-- Calculate the first digit by 16 and the second by 1.
-    76 = (7*6) + (6*1) = 118 in hexadecimal
-    #7403AB
-        Red: (7*16) + (4*1) = 116
-        Green: (0*16) + (3*1) = 3
-        Blue: (10*16) + (11*1) + 171
-        = Purple
+- Hexadecimal numbers run from 0-15, but use letters for numbers above 9  
+    A = 10  
+    B = 11  
+    C = 12  
+    D = 13  
+    E = 14  
+    F = 15  
+- Multiply the first digit by 16 and the second by 1.  
+    76 = (7*6) + (6*1) = 118 in hexadecimal  
+
+    So consider the color: #7403AB  
+        Red: (7*16) + (4*1) = 116  
+        Green: (0*16) + (3*1) = 3  
+        Blue: (10*16) + (11*1) + 171   
+        = Purple  
+
 **The Box Model**
 - Every tag shown in the body is contained in a rectangular box. 
 - Almost every element on a page is a block-level tag. 
@@ -52,45 +54,45 @@ I'm about halfway through the CSS Cross Country course on codeschool and so far 
 - Suggested process after resetting browser defaults:
     1. Start with the body element and add padding to push all of the children away from the edges of the screen
    
-    ```CSS  
+    {% highlight CSS %}  
     body{
         padding: 20px 20px 20px 20px;
     }
-    ```
+    {% endhighlight %}
     2. Add a top and bottom margin to the h1 tag to add space above and below the title
    
-    ```CSS  
+    {% highlight CSS %}  
     h1 {
         margin: 10px 0 15px 0;
     }
-    ```
+    {% endhighlight %}
     3. Repeat for h2
    
-    ```CSS  
+    {% highlight CSS %}  
     h2 {
         margin: 10px 0 20px 0;
     }
-    ```
+    {% endhighlight %}
     4. Do the same for h3
     5. Think about where borders might be useful. Also consider padding to push the border away from the content area 
    
-    ```CSS  
+    {% highlight CSS %}  
     h3 {
         margin: 15px 0 15px 0;
         border-bottom: 1px solid #CCCCCC;
         padding-bottom: 3px;
     }
-    ```
+    {% endhighlight %}
     6. We turned off padding during the reset, so now list items are pushing against the edge of the box. 
    
-    ```CSS  
+    {% highlight CSS %}  
     ul {
         padding: 0 0 0 50px;
     }
     ol {
         padding 0 0 0 50px;
     }
-    ```
+    {% endhighlight %}
 
 **divs and Layout**  
 - A div is a block-level tag that's a generic way to group related content into sections on a page.
@@ -100,9 +102,9 @@ I'm about halfway through the CSS Cross Country course on codeschool and so far 
     at this point, setting the margin to 0, it will center the div.
 - Centering content: If you want to center an entire block-level fixed-width tag, you set the left and right margins to auto.
 
-```CSS  
+{% highlight CSS %}  
 margin: 30px auto 0 auto;
-```
+{% endhighlight %}
     If you want to center child inside a block-level tag, set the text-align of the children to center
 
 
@@ -122,10 +124,10 @@ margin: 30px auto 0 auto;
 - positioned elements may use the top, left, bottom, and right properties for placement
 - relative: renders them as static, but gives the ability to move them  
 
-```CSS
+{% highlight CSS %}
 position: relative;
 top: -0.5em;
-```
+{% endhighlight %}
 - Absolute positioning allows it to be removed from the normal flow and manually positioned
 - Fixed positining fixes an element to a specific place in the window, where it will stay regardless of scrolling.
 

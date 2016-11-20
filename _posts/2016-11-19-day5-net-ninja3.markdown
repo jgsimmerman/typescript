@@ -9,7 +9,7 @@ categories: CSS
 - Two ways: Absolute (px); Relative (em, %)
 - In the example, inheritance and overriding styles are used to demonstrate em styles 
 
-```CSS
+{% highlight CSS %}
 
 article{
     font-size: 16px;
@@ -22,7 +22,7 @@ article h2{
 article p{
     font-size: 50%;
 }
-```
+{% endhighlight %}
 - In this example, 4em is equivalent to 16*4 or 64. em is a relative size, meaning 4x as large as the inherited style.
 - 50% decreases the default font-size by 50%, making it 8px. 
 - Relative measurements are ideal when working with responsive designs. 
@@ -30,12 +30,12 @@ article p{
 **Video 28: Font Family**  
 - Using font-stacks of similar fonts to combat cases where the user doesn't have a font installed  
 
-```CSS
+{% highlight CSS %}
 
 article h2, article p{
     font-family: arial, helvetica, sans-serif;
 }
-```
+{% endhighlight %}
 
 - hints at @font-face declaration and base-64 encoding later in the course, as other ways to combat uninstalled fonts.
 
@@ -48,7 +48,7 @@ article h2, article p{
 - Changing font-weight to lighter, bolder, etc only works if the font has those settings. 
 - In addition to lighter, normal, inherit, bold, and bolder, you can also use the numbers 100, 200, 300, ..., 900. Typically 100-300 is in the lighter range, 400-600 is the normal range, and 700-900 is in the bolder range. Fonts will usually not have more than three numbers, one in each  range.  
 
-```CSS 
+{% highlight CSS %} 
 
 h1{
     font-weight: bold;
@@ -58,13 +58,13 @@ p{
     font-weight: 100;
     font-family: "Yu Gothic";
 }
-``` 
+{% endhighlight %} 
 
 **Video 31: Text Transform**  
 - Change the letter casing (hello => Hello)
 - Options are: capitalize, full-width, inherit, lowercase, none, uppercase.  
 
-```HTML
+{% highlight HTML %}
 
  <body>
        <p class="welcome">Welcome!</p>
@@ -84,8 +84,8 @@ p{
         <p>Hello there ninjas!</p>
 
     </body>
-```  
-```CSS
+{% endhighlight %}  
+{% highlight CSS %}
 
 #header p{
     text-transform: capitalize;
@@ -98,12 +98,12 @@ body{
 body > p{
     text-transform: lowercase;
 }
-```
+{% endhighlight %}
 
 **Video 32: Text Color**  
 - Two types of color property: text/foreground color; background color.   
 
-```CSS  
+{% highlight CSS %}  
 
 #header h1{
     color: chocolate;
@@ -123,12 +123,12 @@ body > p{
      * background: url(img.jpg);
      */
 }
-```
+{% endhighlight %}
 
 **Video 33: Styling Links**  
 - Not much to this video. Basic transformations applied to links.
 
-```CSS
+{% highlight CSS %}
 
 a{
     color: crimson;
@@ -143,7 +143,7 @@ a:hover{
     text-decoration: underline;
     background-color: aquamarine;
 }
-```
+{% endhighlight %}
 
 **Video 34: Letter Spacing and Line Height**  
 - Letter spacing: spacing between letters.
@@ -153,7 +153,7 @@ a:hover{
 - letter-spacing: can use ems/% or px.
 - line-height: tricky, because the if the vertical height of the letters is set to 12px, then it fills up an entire 12px line-height. We're specifying the height of the whole line, not the height of the space between the lines. For doublespacing, you need 24 pixels.
 
-```CSS
+{% highlight CSS %}
 
 p{
     font-size: 12px;
@@ -165,19 +165,19 @@ p{
     letter-spacing: 0.1em;
     line-height: 2em;
 }
-```
+{% endhighlight %}
 
 **Video 35: Paragraph Spacing**  
 - To set paragraph spacing, we use a property called margin (this is part of the Box Model).   
 
-```CSS
+{% highlight CSS %}
 
 p{
     font-size 14px;
     line-height 2em;
     margin-bottom: 32px;
 }
-```
+{% endhighlight %}
 - This essentially wraps up the sections on fonts, texts, and letter spacing; and it provides a segue into the Box Model. 
 
 **Video 36: The Box Model**  
@@ -191,7 +191,7 @@ p{
 
 - When you specify "width: 100%" then it can cause an overflow, because it takes up 100% of the element, plus it has padding, border, and margin.
 
-```CSS
+{% highlight CSS %}
 
 .box{
     margin: 30px;
@@ -199,35 +199,35 @@ p{
     border: 1px solid #000;
     width: 100%;
 }
-```
+{% endhighlight %}
 - If we specify a width of 200px, then we still have to add the margin, padding, and border; so the overall width is 322= 200 +30 + 30 + 30 +30 +1 + 1
 
 **Video 37: Margins**
 
-```CSS
+{% highlight CSS %}
 
 margin: 30px 15px;
-```
+{% endhighlight %}
 - This will set the top and bottom margin to 30px and the right and left to 15px. 
 
 - Margin Collapse: When you have two elements stacked on top of eachother and they both have a margin associated with them, they combine when they meet eachother, rather than stacking.You can observe this in Dev Tools. 
 - margin auto: 30px auto; will center the box within it's parent element.
 - You can also use percentages to center everything, and it will also work for responsive design.
 
-```CSS
+{% highlight CSS %}
 
 .box{
     margin: 30px 25%;
     border: 1px solid #000;
     width: 50%; 
 }
-```
+{% endhighlight %}
 In this case, the box is centered because the width is set to 50% and the margin is set to 25%.
 
 **Video 38: Padding**
 - Internal spacing property within the confines of the element itself. Like othe boxes, it can be inspected in Dev tools.
 
-```CSS
+{% highlight CSS %}
 
 .box{
     margin: 30px;
@@ -235,12 +235,12 @@ In this case, the box is centered because the width is set to 50% and the margin
     border: 1px solid #000;
 
 }
-```
+{% endhighlight %}
 
 **Video 39: Padding and Margin Long-hand**  
 - Specify one particular side to apply margin or padding to.
 
-```CSS 
+{% highlight CSS %} 
 
 .box{
     margin-top: 30px;
@@ -251,7 +251,7 @@ In this case, the box is centered because the width is set to 50% and the margin
 .small{
     padding-left: 5px;
 }
-```
+{% endhighlight %}
 
 This example will display a border on the left of the element, and if you have a div with a class="box small" then you can have a smaller box with a padding of 5px instead of the larger .box padding of 20px.
 
