@@ -85,7 +85,7 @@ a[title="Search Engine"] {
     color: red;
 }
 {% endhighlight %}
-    This will target links where title="Search Engine"
+    - This will target links where title="Search Engine"
 - Pattern Matching: If you want to target all elements of a specific class without excluding elements that contain other classes, you can put a tilde in fron the of the = sign.
 
 {% highlight CSS %}
@@ -94,7 +94,7 @@ span[class~="deck"] {
 }
 {% endhighlight %}
 
-    will target all of the spans of class deck, including the one with class halls:
+    - will target all of the spans of class deck, including the one with class halls:
 
 {% highlight HTML %}
 <span class="deck halls">Yo, I'm a span tag too</span>
