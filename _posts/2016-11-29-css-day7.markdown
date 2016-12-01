@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Day 8: CSS for Beginners, by Net Ninja (Part 5)" 
+date: 2016-11-29
+categories: CSS
+---
+
+
+**Video 52: CSS Website Build Part 1**  
+
+- These two videos walked through the process of building the CSS portion of an entire web page in about 20 minutes. I've made a few changes to it (getting rid of list elements for the navbar, for example) and will probably post the code to github and update with a link.
+
+This concludes the Net Ninja CSS for Beginners video series. 
