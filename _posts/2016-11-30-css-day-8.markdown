@@ -1,0 +1,309 @@
+---
+layout: post
+title: "Day 8: Net Ninja CSS Positioning Tutorial" 
+date: 2016-11-30
+categories: CSS
+---
+
+Today I worked through the Net Ninja CSS Positioning tutorial. It's fairly short, but pretty good. My closing thoughts are at the end. 
+
+**CSS Positioning Video 1: Introduction**  
+
+- Review the box model
+- Normal document float
+- Floats
+- Position property
+- Stacking order and Z-Index
+- Overflowing Content
+- Text Columns
+
+**CSS Positioning Video 2: Box Model Review** 
+
+- Block level elements default to 100% width of the page.
+
+{% highlight HTML %}
+<p>test</p>
+    <p>test</p>
+    <p>test</p>
+    <a href="">test</a>
+    <a href="">test</a>
+</body>
+{% endhighlight %}
+- inline elements don't, so the p tags take up the entire width but the a tags don't.
+- This can be controlled using CSS. 
+
+**CSS Positioning Video 3: Normal Document Flow**  
+
+- Not document flow is from top to bottom, and positional techniques may not be necessary. 
+
+**CSS Positioning Video 4: Floating Elements**  
+
+- Floating is one of the most used techniques in positioning. 
+- Can be used to "float" images next to a body of text;
+{% highlight CSS %}
+
+img{
+    float: left;
+    margin: 10px;
+}
+{% endhighlight %}
+- given:
+{% highlight HTML %}  
+ <div class="blue box"></div>
+<div class="red box"></div>
+<div class="green box"></div>
+{% endhighlight %}
+
+and 
+
+{% highlight CSS %}
+.blue{
+    background: blue;
+    float: right;
+}
+
+.red{
+    background: red;
+}
+
+.green{
+    background: green;
+}
+
+.box{
+    height: 100px;
+    width: 100px; 
+}
+{% endhighlight %}
+The red and green boxes will shift upward because the blue box has been removed from normal document flow, and "floated" to the right.
+If you then float the red box to the left, the green one will move up *behind* the red box, because it's been removed from normal document flow.
+
+- This can be used to create image galleries. 
+
+- Likewise, a basic service page could be laid out with the following code:
+
+{% highlight HTML %} 
+<div class="service">
+           <h2>Service 1</h2>
+           <p>This is service 1</p>
+       </div>
+       
+       <div class="service">
+           <h2>Service 2</h2>
+           <p>This is service 2</p>
+       </div>
+       <div class="service">
+           <h2>Service 3</h2>
+           <p>This is service 3</p>
+       </div>
+{% endhighlight %}
+
+{% highlight CSS %}
+.service h2, .service p {
+    color: #999;
+    margin: 10px 0;
+    text-align: center;
+    
+}
+
+.service{
+    float: left;
+    background: #eee;
+    width: 29%;
+    margin: 1%;
+    padding: 1%;
+    height: 140px;
+}
+{% endhighlight %}
+
+**CSS Positioning Video 5: Clearing Floats**  
+
+- Clearing floats brings us back to normal document flow. The syntax is simply {clear: both;} although "both" could be replaced by "left" or "right.
+- This has a flaw. The margin of the next element extends behind the floated elements. There are techniques to solve this.
+    1. Add an empty div in between the elements: <div style"clear: both;"></div>
+    2. The same can be achieved more elegantly by adding an :after psuedo-class:
+
+{% highlight CSS %}  
+.services: after{
+    content: "";
+    display: block;
+    clear: both;
+}
+{% endhighlight %}
+
+**CSS Positioning Video 6: Floating Columns** 
+
+- If you have a <section> and an <aside> and you'd like them to be in two columns, you can accomplish this by using: 
+
+{% highlight CSS %} 
+
+section, aside{
+    float: left;
+    width: 46%;
+    padding: 1%;
+    margin: 1%;
+    background: #f2f2f2;
+}
+{% endhighlight %}
+
+- You can then clear the floats by clearing a containing wrapper: 
+
+{% highlight CSS %}
+.columns:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+
+{% endhighlight %}
+
+**CSS Positioning Video 7: Creating Text Columns (Without using Floats)**  
+
+-  Alternatively, you can use a newer method of creating columns without floats, although prefixes may be necessary as they're not supported by all browsers. An example can be seen here:
+{% highlight CSS %}
+.content p{
+    -webkit-column-count: 3;
+    column-count: 3;
+    -webkit-column-gap: 50px;
+    column-gap: 50px;
+    -webkit-column-rule: 1px solid #ccc;
+    column-rule: 1px solid #ccc;
+    text-align: justify; 
+}
+{% endhighlight %}
+
+**CSS Positioning Video 8: Relative Position**  
+
+- The position property takes one of five values: statatic, relative, absolute, fixed, inherit.
+- This can doesn't remove elements from normal document flow.
+- Can be combined with child elements to slightly offset your elements. For instance, this will create a stair affect with the services:
+
+{% highlight CSS %}  
+.service{
+    float: left;
+    background: #eee;
+    width: 29%;
+    margin: 1%;
+    padding: 1%;
+    height: 140px;
+    position: relative;
+}
+
+.service:nth-child(1){
+    top: 5px;
+}
+
+.service:nth-child(2){
+    top: 10px;
+}
+
+.service:nth-child(3){
+    top: 15px;
+}
+
+{% endhighlight %} 
+
+**CSS Positioning Video 9: Absolute Position** 
+
+- A element is positioned absolutely: it can be positioned absolutely anywhere on a page. 
+- We position it absolutely, relative to the parent element that is positioned relative. 
+- I'll have to study this more to fully understand it, but here is the video example, which should center the text relative to the overall banner div.
+
+{% highlight CSS %}
+#banner{
+    max-height: 300px;
+    overflow: hidden;
+    margin: 1%;
+    positon: relative;
+}
+
+#banner h2{
+    position: absolute;
+    top: 30;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+}
+{% endhighlight %}
+
+**CSS Positioning Video 10: Fixed Position**  
+
+- This can be used to created a fixed navbar:
+
+{% highlight CSS %}
+
+nav{
+    background: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+
+nav ul:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+nav li{
+    list-style-type: none;
+    margin: 0 10px;
+    color: #fff;
+    float: right;
+    
+}
+
+{% endhighlight %}
+
+{% highlight HTML %}
+<nav>
+    <ul>
+        <li>link</li>
+        <li>link</li>
+        <li>link</li>
+    </ul>
+</nav> 
+{% endhighlight %}
+
+
+**CSS Positioning Video 11: Z-Index & Stacking Order**  
+
+- In the previous lesson, the <nav> was placed at the bottom of the HTML because of stacking order. If it had been at the top, then it would have scrolled *below* the other elements as you moved down the page.
+- This problem can be avoided using the Z-Index. This can be visualed as an xyz-graph. 
+- Default Z-Index is zero, so they're all on the same level. Setting the z-index to have the highest value of the elements will ensure that it's the top element. 
+
+{% highlight CSS %} 
+nav{
+    background: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+{% endhighlight %}
+- The Z-Index is useful, but you should try to avoid using it and sticking with the regularly stacking order as much as possible, so that you don't have to keep track of too many Z-Index variables.
+- As an interesting quirk, if you set .banner{z-index: 3;} nav{z-index: 1;} wrapper{z-index: 0;}, then because .banner is in .wrapper (but nav is not) everything inside of .wrapper will inherit a z-index of 0, so nav will still have the higher z-index.
+
+**CSS Positioning Video 12: Clipping Conent**  
+
+ - To cut off the bottom portion of the stepped down services, we can use the overflow property:
+
+ {% highlight CSS %}  
+ .services{
+    max-height: 150;
+    overflow: hidden;
+}
+
+{% endhighlight %}
+
+**Closing Thoughts:**
+That wraps up Net Ninja's tutorial on positioning. It was awesome and I learned some things. I'll practice on my Zen Garden tomorrow and read some stuff on CSS-Tricks. I already feel like I have a much better grasp on CSS than I did when I started. It looks like he's got two more vanilla CSS tutorials available: Flexbox, and Animation. I'll probably go through the Flexbox tutorial next, but first I might spend a couple of days practicing and reinforcing what I've already learned. 
+
+
+
+
+ 
