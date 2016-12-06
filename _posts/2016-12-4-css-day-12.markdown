@@ -8,7 +8,7 @@ categories: CSS
 Today I'm going to be diving into the Mozilla Developer Network and their guide to [CSS Layout](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout). 
 
 
-== Introduction to CSS Layout == 
+## Introduction to CSS Layout ## 
 
 
 We can overried the normal layout flow using the following techniques:
@@ -20,7 +20,7 @@ We can overried the normal layout flow using the following techniques:
     - Standard values such as block, inline, or inline-block can change how elements behave in normal flow. 
     - Specialised values allow us to lay out elements in completely different ways using tools like flexbox.
 
-**Floats** 
+### Floats ###
 
 - Allow elements to float to the left or right, rather than on top of eachother.
 - Main use it to lay out columns and float text around an image. 
@@ -29,4 +29,218 @@ We can overried the normal layout flow using the following techniques:
     - right: floats elements to the right.
     - none: default value with no floating at all.
     - inherit: the value of the float should be inherited from the parent element.
+- The article shows how you can use floats to create a simple two column layout. It begins with the following HTML:
+```HTML
+<h1>2 column layout example</h1>
 
+<div>
+  <h2>first column</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Null luctus aliquam dolor, eu lachinia lorem placerat valputate.</p>
+</div>
+
+<div>
+  <h2>Second Column</h2>
+  <p>Nam vulputate diam nec tempor bibendum. Donec lucutus augue eget malesuada ultrices. Phasellus turpis est, posuere sit amet dapibus ut.</p>
+</div>
+```
+
+- To create a two column layout, we float both divs, one to the left and the other to the right. The width value allows to fit on the same line.
+```CSS
+div:nth-of-type(1) {
+  width: 48%;
+  float: left;
+}
+
+div:nth-of-type(2) {
+  width: 48%;
+  float: right;
+}
+```
+
+
+### Positioning Techniques ###
+
+- The article provides the following examples that all use the same code:
+{% highlight HTML %}
+
+<h1>Positioning</h1>
+
+<p>I am a basic block level element.</p>
+<p class="positioned">I am a basic block level element</p>
+<p>I am a basic block level element</p>
+
+{% endhighlight %}
+
+{% highlight CSS %}
+
+body {
+  width: 500px;
+  margin: 0 auto;
+}
+
+p {
+  background: aqua;
+  border: 3px solid blue;
+  padding: 10px;
+  margin: 10px;
+}
+
+span {
+  background: red;
+  border: 1px solid black;
+}
+
+{% endhighlight %}
+
+**Relative Positioning**
+
+- Relative positioning is used to make small layout tweaks, such as moving an element down so that it lines up with a text label.
+- This can be demonstrated by the following code: 
+```CSS
+.positioned {
+  position: relative; 
+  background: yellow;
+  top: 30px;
+  left: 30px;
+}
+```
+- Setting the position to relative doesn't do anything by itself, but adding the top and left properties pushes our element down and to the right by 30px in each direction.
+- You can also use percentages, ems, etc. by only adding top: 50%; we can move the positioned block directly below the third block.
+
+**Absolute Positioning**
+
+- Absolute positioning moves elements anywhere on the webpage.
+- Often used in conjunction with relative positioning and floats.
+- Even using the otherwise same code as before, we get very different results.
+```CSS
+.positioned {
+  position: absolute;
+  background: yellow;
+  top: 30px;
+  left: 30px;
+}
+```
+- In this situation, the other two elements now sit together as if the sibling element doesn't exist. Meanwhile, the positioned element has moved towards the top left corner.
+    - In absolute positioning, top and left don't specify how much the element will move relative to it's original position.
+    - top and left specify the distance the element should sit from the top and left sides of the pages boundaries. 
+        - Using percentage values of 0% will place it in the top left-corner. Similar, setting bottom and right to 0% would position in the bottom-right corner.
+
+**CSS tables**
+
+- CSS tables let you layout elements like they were in a table, without any of the issues associated with HTML tables (inflexible, heavy on markup, difficult to debug, problematic for screen readers).
+- The CSS involved is fairly ordinary except for the use of the display property. The keywords table, table-row, table cell, and table-caption essentially tell the form to act like an HTML table.
+- The paragraph has been given display: table-caption; wwhich makes it act like a table caption, and then caption-side: bottom; so that it aligns below the table.
+
+```HTML
+<form>
+  <p>First of all, tell us your name and age.</p>
+  <div>
+    <label for="fname">First name:</label>
+    <input type="text" id="fname"/>
+  </div>
+  <div>
+    <label for="lname">Last name: </label>
+    <input type="text" id="lname"/>
+  </div>
+  <div>
+    <label for="age">Age: </label>
+    <input type="text" id="age"/>
+  </div>
+  ```
+
+  ```CSS
+  html {
+  font-family: sans-serif;
+}
+
+form {
+  display: table;
+  margin: 0 auto;
+}
+
+form div {
+  display: table-row;
+}
+
+form label, form input {
+  display: table-cell;
+  margin-bottom: 10px;
+}
+
+form label {
+  width: 200px;
+  padding-right: 5%;
+  text-align: right;
+}
+
+form input {
+  width: 300px;
+}
+
+form p {
+  display: table-caption;
+  caption-side: bottom;
+  width: 300px;
+  color: #999;
+  font-style: italic;
+}
+```
+
+**Flexible Boxes**
+
+- This section only gives a brief description of flexbox and shows an example in action. Here is the code for the example:
+
+```HTML
+<section>
+  <div>This is a box</div>
+   <div>This is a box</div>
+   <div>This is a box</div>
+</section>
+
+<button class="create">Create box</button>
+<button class="reset">Reset demo</button>
+```
+
+```CSS
+html {
+  font-family: sans-serif;
+}
+
+section{
+  width: 93%;
+  height: 240px;
+  margin: 20px auto;
+  background: purple;
+  display: flex;
+}
+
+div {
+  color: white;
+  background: orange;
+  flex: 1;
+  margin-right: 10px;
+  text-shadow: 1px 1px 1px black;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+section, div {
+  border: 5px solid rgba(0,0,0,0.85);
+  padding: 10px;
+}
+```
+
+- display: flex: tells the <section> element's child elements to be laid out as flex boxes. 
+    - This means that the child elements will, by default, stretch to fill the abilable height of the parent and be laid out in a row with enough width to wrap their content.
+- flex: 1; tells each <div> element to take up an equal amount of space in the row.
+
+**Grid layout**
+
+- Experimental feature without widespread browser support. 
+- Define a grid and then define which parts of the content sit within each area of the grid.
+
+
+
+ 
