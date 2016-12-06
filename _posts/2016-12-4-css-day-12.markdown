@@ -1,0 +1,32 @@
+---
+layout: post
+title: "Day 12: MDN Layout
+date: 2016-12-4
+categories: CSS
+---
+
+Today I'm going to be diving into the Mozilla Developer Network and their guide to [CSS Layout](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout). 
+
+
+== Introduction to CSS Layout == 
+
+
+We can overried the normal layout flow using the following techniques:
+- The position property.
+    - static is the default in normal flow, but you cause elements to be laid out differently by using other values.
+- Floats.
+    - Applying a float value such as left can cause block level elements to line up next to eachother instead of on top of eachother.
+- The display property. 
+    - Standard values such as block, inline, or inline-block can change how elements behave in normal flow. 
+    - Specialised values allow us to lay out elements in completely different ways using tools like flexbox.
+
+**Floats** 
+
+- Allow elements to float to the left or right, rather than on top of eachother.
+- Main use it to lay out columns and float text around an image. 
+- The float property has four possible values:
+    - left: floats elements to the left.
+    - right: floats elements to the right.
+    - none: default value with no floating at all.
+    - inherit: the value of the float should be inherited from the parent element.
+
