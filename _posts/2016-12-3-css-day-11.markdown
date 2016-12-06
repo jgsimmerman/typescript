@@ -1,0 +1,224 @@
+---
+layout: post
+title: "Day 11: Net Ninja CSS Animations Tutorial (Pt. 2)" 
+date: 2016-12-3
+categories: CSS
+---
+
+Today I'm going to work through the last five Net Ninja videos on CSS Animations. 
+
+
+**CSS Animations Video 9: Animation Short-hand**  
+
+- We can use short-hand to reduce the number of animation functions we're calling in our CSS. We're going to demonstrate that by creating clouds in the background. 
+
+- Both clouds are given the class cloud and then we're manipulating them individually using .cloud:nth-child(){ ... } to alter their properties. We're also going to create a new keyframe "wind" for the clouds.
+- We first specify the keyframe (wind), then the duration of the animation (80s), then the timing-function (linear), iteration-count (infinite), and direction (reverse). We end up with something that looks like this:
+
+{% highlight CSS %}
+.cloud{
+    position: absolute;
+}
+
+.cloud:nth-child(1){
+    width: 200px;
+    top: 120px;
+    opacity: 0.5;
+    animation: wind 80s linear infinite reverse;
+}
+
+.cloud:nth-child(2){
+    width: 300px;
+    top: 0;
+    animation: wind 50s linear 12s infinite reverse both;
+}
+
+
+@keyframes wind{
+    from{
+        left: -300px;
+    }
+    to{
+        left: 100%;
+    }   
+}
+
+{% endhighlight %}
+
+- The second child has a 2s delay. The order is important here, because the first number is always the timing-duration. The timing-delay has to come after that value. The rest of the ordering is less important because it's going off of the keywords. 
+
+**CSS Animations Video 10: Chaining Animation**  
+- We can chain two animations together by using a comma to separate them. To illustrate this, we create a new animation jump and link them together as such: 
+
+{% highlight CSS%}
+.mario{
+    position: absolute;
+    top: -40px;
+    left: 0px; 
+    animation: drive 3s both infinite linear, 
+               jump 0.3s .8s ease;
+}
+
+@keyframes jump{
+    0%{
+        top: -40px;
+    }
+    50%{
+        top: -100px;
+    }
+    100%{
+        top: -40px;
+    }
+}
+
+{% endhighlight %}
+
+**CSS Animations Video 11: Animating a Pop-Up**  
+- This video walks us through styling a pop-up form. The basic CSS is as follows: 
+
+{% highlight CSS %}
+
+#pop-up{
+    top: -400px;
+    animation: drop 0.5s ease forwards;
+}
+
+@keyframes drop{
+    0%{ opacity: 0;}
+    70%{
+        transform: translateY(700px);
+    }
+    100%{
+        transform: translateY(650px);
+        opacity: 1;
+    }
+}
+
+{% endhighlight %}
+
+- This keyframe causes the form to drop over the span of .5s, with a little bounce at the bottom from 700px back up to 650px. It also eases in from being opaque. 
+
+We can further add a swinging effect with the following keyframe and code changes. 
+
+{% highlight CSS %}
+#pop-up{
+    top: -400px;
+    transform-origin: 10px 10px;
+    animation: drop 0.5s ease forwards,
+               swing 2s 3s ease forwards;
+}
+
+@keyframes drop{
+    0%{ opacity: 0;}
+    70%{
+        transform: translateY(700px);
+    }
+    100%{
+        transform: translateY(650px);
+        opacity: 1;
+    }
+}
+
+@keyframes swing{
+    0%{transform: translateY(650px) rotateZ(0deg);}
+    40%{transform: translateY(650px) rotateZ(90deg);}
+    70%{transform: translateY(650px) rotateZ(70deg);}
+    100%{transform: translateY(650px) rotateZ(75deg)}
+}
+{% endhighlight %}
+
+- In the #pop-up{} container, transform-origin: 10px 10px; is the starting point of the swinging, which is roughly in the corner of our pop-up element. 
+- In the swing keyframe, it's important to add translateY(650px) to the transforms because otherwise we might screw up and undo the translateY transform that we have in our drop keyframe.
+- Finally, we rotate it along the Z-axis to create a swinging effect, from 0 degree, up to 90, back down to 70 and then a slight bump back up to 75%. 
+
+**CSS Animations Video 12: Animating a Shopping Cart**  
+
+- This video shows how to add a shopping cart animation, where a photo of the item will zoom into the shopping cart. The CSS is as follows: 
+{% highlight CSS %}
+.zoom{
+    position: absolute;
+    top: 40px;
+    right: 50%;
+    width: 40px;
+    animation: zoom 1s ease forwards;
+}
+
+@keyframes zoom{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        right: 40px;
+    }
+}
+{% endhighlight %}
+
+- There's nothing really new here. This does require some javascript, though:  
+
+{% highlight jquery %}
+$("button").on("click", function(){
+          $(this).closest("li")
+            .find("img")
+            .clone()
+            .addClass("zoom")
+            .appendTo("body");
+          setTimeout(function(){
+              $(".zoom").remove();
+          }, 1000);        
+      });
+{% endhighlight %}
+
+- When you click the button, it adds an img element with class zoom and then the img easeses in from opaque to solid as it zoom across the screen and into the cart.
+- note the starting point of "right: 50%;" which then ends at "right: 40px;" after our animation.
+
+**CSS Animations Video 13: Rotating Panels Animation**  
+
+- Given a set of card pairs, we want to animate it so that the second card in each pair is hiding behind the first card until we hover over it. In each pair, one of the cards has a class of front, and the other of back.
+- This can be accomplished by using the rotateY property. At 90deg, it'll look so thin that we won't be able to see it. 
+- To move the back panel behind the front panel, we'll position the front panel absolutely. This will take it out of normal document flow. 
+
+{% highlight CSS %}
+.panels div.back{
+    transform: rotateY(90deg);
+}
+
+.panels div.front{
+    position: absolute;
+}
+{% endhighlight %}
+
+- In essence, when something mouses over a front card, we want to change the rotateY transform of div.back from 90 degrees to 0 degrees. At the same time, we want to rotate the div.back from 0 degrees *to* 90 degrees.
+- We can do this by implementing keyframes: 
+
+{% highlight CSS %}
+
+.panels li:hover div.front{
+    animation: twirl 0.2s ease-in forwards;
+}
+
+.panels li:hover div.back{
+    animation: twirl 0.2s 0.2s ease-in forwards reverse;
+}
+
+
+@keyframes twirl{
+    0%{
+        transform: rotateY(0deg);
+    }
+    100%{
+        transform: rotateY(90deg);
+    }
+}
+
+{% endhighlight %} 
+
+- The .2s delay on div.back is so that *after* the front panel rotates out, the back panel will then rotate in. This will crease a smoother look. The end result is a smooth looking transition that creates the appearance of cards flipping over.
+
+
+### **Closing Thoughts** ###
+
+That might have been the most intense tutorial series yet. I feel like I learned quite a bit, but I'm definitely going to have to do a lot of studying, review, and practice. Still, I *do* feel like we did some pretty cool projects: a MarioKart animation; a flipping tiles animation; an animated popup; and a little animated shopping cart. 
