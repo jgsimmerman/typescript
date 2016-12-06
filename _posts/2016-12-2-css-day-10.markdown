@@ -1,0 +1,400 @@
+---
+layout: post
+title: "Day 10: Net Ninja CSS Animations Tutorial" 
+date: 2016-12-2
+categories: CSS
+---
+
+Next up, I'm going to try to tackle the Net Ninja CSS Animations tutorial. I fully expect this to be kind of tricky, so we'll see how far I can get in the first day. 
+
+**Video 1: Introduction**  
+
+- Makes animating web elements much easier
+- Eliminates the need for Javascript for many animation effects.
+- Easy once you get the hang of it.
+
+### Necessary Skills ###  
+
+- Transforms
+- Transitions
+- Keyframes
+- Animation Basics
+- Practical Examples
+
+**Video 2: Transforms**  
+
+- translate: move the element from one position to another on the web page.
+    translateX moves it to the right, translateY move it down. 
+    translate(-200px, 200px) will move it left 200px, and down 200px.
+- scale: scales the element. A value of 1 won't do anything.
+    scaleX(3) will make it three times as wide. 
+- rotate: rotates the element along the x, y, or z axis. Example:
+{% highlight CSS %}
+    img{
+        transform: rotateX(100deg):
+    }
+
+    rotateZ(); is the most visually apparent. 
+- Multiple transforms can be used at the same time:
+
+    img{
+        transform: rotateZ(-90deg) translateY(200px) scale(2);
+    }      
+{% endhighlight %}
+- Multiple transforms will act sequentially, so in this example rotateZ() works, followed by translateY() and then scale();
+
+**Video 3: Transitions**  
+
+- Transition an element from one state to another over a set amount of time. 
+
+{% highlight CSS %}
+.circle{
+    width: 100px;
+    padding: 50px 0;
+    line-height: 0;
+    margin: 60px auto;
+    background: pink;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 1s, transform 0.3s 1s ease-in;
+}
+
+.circle:hover{
+    background: salmon;
+    transform: rotate(360deg);
+}
+
+{% endhighlight %}
+
+- This code example will transition the background to salmon over a period of 1s, and the apply the transform over .3 seconds. Notice how the two effects are chained together in the transition parameter. The transform also has a 1s delay applied to it as well as ease-in timing function (note, the first number passed is the time duration, second number passed is the delay, the third is the timing function).
+
+- Other timing functions include linear, ease, ease-out, and steps() which takes two values such as steps(4, end);
+
+- MDN has a great page on the [transition-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function).
+
+**Video 4: Keyframes**  
+
+- Powerhouse of CSS Animations
+- Use a different keyframe block for every type of animation we use.
+
+- Keyframe blocks are created using the following formate: @keyframe *name*{ ... }
+
+- The example used in the video is: 
+
+{% highlight CSS %}
+
+/*// ELEMENTS TO ANIMATE //*/
+
+.mario{
+    position: absolute;
+    top: -40px;
+    left: 0px; 
+    animation-name: drive;
+    animation-duration: 3s;
+    
+}
+
+/*// KEYFRAMES //*/
+
+@keyframes drive{
+    from{ 
+        transform: translateX(0);
+    }
+    to{ 
+        transform: translateX(700px);
+    }
+}
+{% endhighlight %}
+
+- In this example, animation-name assigns to keyframe drive to mario, and animation-duration tells it to take mario 3 seconds to move from one spot to the other. 
+
+**Video 5: Animation Fill Mode** 
+
+- animation-fill-mode decides what to do with the element outside of the animation window.
+
+- Right now our element jumps back to the beginning after his transform. We can override this default behavior by adding "animation-fill-mode: forwards;" to the mario class. Use can pass backwards, forwards, or both to the animation-fill-mode function.
+
+{% highlight CSS %}
+.mario{
+    position: absolute;
+    top: -40px;
+    left: 0px; 
+    animation-name: drive;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-delay: 2s;
+    
+}
+
+/*// KEYFRAMES //*/
+
+@keyframes drive{
+    from{ 
+        transform: translateX(200px);
+    }
+    to{ 
+        transform: translateX(700px);
+    }
+}
+{% endhighlight %}
+
+**Video 6: Repeating Animations**  
+
+- "animation-iteration-count: 3;" will cause the animation to repeat itself three times. 
+- In this case, we can change the translateX values so that mario begins off-screen and then drives across the screen and back out of view. 
+- If you want the animation to continue indefinitely, you can use "animation-iteration-couont: infinite;"
+
+**Video 7: Animation Direction**  
+
+- We can use "animation-direction: " to determine the direction of the animation. The possible keywords that we can use are alternate, alternate-reverse, normal, and reverse. The default value is normal.
+- We can also call our previous keyframe from a different class, as seen here: 
+
+{% highight CSS %}
+.luigi{
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    animation-name: drive;
+    animation-duration: 5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+{% endhighlight %}
+
+- This code block creates a .luigi animation that begins in reverse and then alternates to forward every time a new iteration begins. 
+
+**Video 8: Animation Timing Functions**  
+
+- The [animation-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function) determines the rate that an element goes from the start to end location. Up to now, in our example, the elements slow down toward the end because the default value is ease. When it's set to ease, it starts slow, speeds up, and then slows down toward the end.
+- In addition to the default keywords, we can pass in our own custom value using the cubic-bezier() function
+- The cubic-bezier function takes four numbers. [cubic-bezier.com](http://cubic-bezier.com) has a useful generator for creating our own cubic-bezier curves. A steep curve means it's going fast, a less steep curve means it's going slow. In this way, you can customize the timing of the transition. 
+
+{% highlight CSS %}
+.mario{
+    position: absolute;
+    top: -40px;
+    left: 0px; 
+    animation-name: drive;
+    animation-duration: 3s;
+    animation-fill-mode: both; 
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0,.52,1,-0.03);
+}
+{% endhighlight %}
+
+**CSS Animations Video 9: Animation Short-hand**  
+
+- We can use short-hand to reduce the number of animation functions we're calling in our CSS. We're going to demonstrate that by creating clouds in the background. 
+
+- Both clouds are given the class cloud and then we're manipulating them individually using .cloud:nth-child(){ ... } to alter their properties. We're also going to create a new keyframe "wind" for the clouds.
+- We first specify the keyframe (wind), then the duration of the animation (80s), then the timing-function (linear), iteration-count (infinite), and direction (reverse). We end up with something that looks like this:
+
+{% highlight CSS %}
+.cloud{
+    position: absolute;
+}
+
+.cloud:nth-child(1){
+    width: 200px;
+    top: 120px;
+    opacity: 0.5;
+    animation: wind 80s linear infinite reverse;
+}
+
+.cloud:nth-child(2){
+    width: 300px;
+    top: 0;
+    animation: wind 50s linear 12s infinite reverse both;
+}
+
+
+@keyframes wind{
+    from{
+        left: -300px;
+    }
+    to{
+        left: 100%;
+    }   
+}
+
+{% endhighlight %}
+
+- The second child has a 2s delay. The order is important here, because the first number is always the timing-duration. The timing-delay has to come after that value. The rest of the ordering is less important because it's going off of the keywords. 
+
+**CSS Animations Video 10: Chaining Animation**  
+- We can chain two animations together by using a comma to separate them. To illustrate this, we create a new animation jump and link them together as such: 
+
+{% highlight CSS%}
+.mario{
+    position: absolute;
+    top: -40px;
+    left: 0px; 
+    animation: drive 3s both infinite linear, 
+               jump 0.3s .8s ease;
+}
+
+@keyframes jump{
+    0%{
+        top: -40px;
+    }
+    50%{
+        top: -100px;
+    }
+    100%{
+        top: -40px;
+    }
+}
+
+{% endhighlight %}
+
+**CSS Animations Video 11: Animating a Pop-Up**  
+- This video walks us through styling a pop-up form. The basic CSS is as follows: 
+
+{% highlight CSS %}
+
+#pop-up{
+    top: -400px;
+    animation: drop 0.5s ease forwards;
+}
+
+@keyframes drop{
+    0%{ opacity: 0;}
+    70%{
+        transform: translateY(700px);
+    }
+    100%{
+        transform: translateY(650px);
+        opacity: 1;
+    }
+}
+
+{% endhighlight %}
+
+- This keyframe causes the form to drop over the span of .5s, with a little bounce at the bottom from 700px back up to 650px. It also eases in from being opaque. 
+
+We can further add a swinging effect with the following keyframe and code changes. 
+
+{% highlight CSS %}
+#pop-up{
+    top: -400px;
+    transform-origin: 10px 10px;
+    animation: drop 0.5s ease forwards,
+               swing 2s 3s ease forwards;
+}
+
+@keyframes drop{
+    0%{ opacity: 0;}
+    70%{
+        transform: translateY(700px);
+    }
+    100%{
+        transform: translateY(650px);
+        opacity: 1;
+    }
+}
+
+@keyframes swing{
+    0%{transform: translateY(650px) rotateZ(0deg);}
+    40%{transform: translateY(650px) rotateZ(90deg);}
+    70%{transform: translateY(650px) rotateZ(70deg);}
+    100%{transform: translateY(650px) rotateZ(75deg)}
+}
+{% endhighlight %}
+
+- In the #pop-up{} container, transform-origin: 10px 10px; is the starting point of the swinging, which is roughly in the corner of our pop-up element. 
+- In the swing keyframe, it's important to add translateY(650px) to the transforms because otherwise we might screw up and undo the translateY transform that we have in our drop keyframe.
+- Finally, we rotate it along the Z-axis to create a swinging effect, from 0 degree, up to 90, back down to 70 and then a slight bump back up to 75%. 
+
+**CSS Animations Video 12: Animating a Shopping Cart**  
+
+- This video shows how to add a shopping cart animation, where a photo of the item will zoom into the shopping cart. The CSS is as follows: 
+{% highlight CSS %}
+.zoom{
+    position: absolute;
+    top: 40px;
+    right: 50%;
+    width: 40px;
+    animation: zoom 1s ease forwards;
+}
+
+@keyframes zoom{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        right: 40px;
+    }
+}
+{% endhighlight %}
+
+- There's nothing really new here. This does require some javascript, though:  
+
+{% highlight jquery %}
+$("button").on("click", function(){
+          $(this).closest("li")
+            .find("img")
+            .clone()
+            .addClass("zoom")
+            .appendTo("body");
+          setTimeout(function(){
+              $(".zoom").remove();
+          }, 1000);        
+      });
+{% endhighlight %}
+
+- When you click the button, it adds an img element with class zoom and then the img easeses in from opaque to solid as it zoom across the screen and into the cart.
+- note the starting point of "right: 50%;" which then ends at "right: 40px;" after our animation.
+
+**CSS Animations Video 13: Rotating Panels Animation**  
+
+- Given a set of card pairs, we want to animate it so that the second card in each pair is hiding behind the first card until we hover over it. In each pair, one of the cards has a class of front, and the other of back.
+- This can be accomplished by using the rotateY property. At 90deg, it'll look so thin that we won't be able to see it. 
+- To move the back panel behind the front panel, we'll position the front panel absolutely. This will take it out of normal document flow. 
+
+{% highlight CSS %}
+.panels div.back{
+    transform: rotateY(90deg);
+}
+
+.panels div.front{
+    position: absolute;
+}
+{% endhighlight %}
+
+- In essence, when something mouses over a front card, we want to change the rotateY transform of div.back from 90 degrees to 0 degrees. At the same time, we want to rotate the div.back from 0 degrees *to* 90 degrees.
+- We can do this by implementing keyframes: 
+
+{% highlight CSS %}
+
+.panels li:hover div.front{
+    animation: twirl 0.2s ease-in forwards;
+}
+
+.panels li:hover div.back{
+    animation: twirl 0.2s 0.2s ease-in forwards reverse;
+}
+
+
+@keyframes twirl{
+    0%{
+        transform: rotateY(0deg);
+    }
+    100%{
+        transform: rotateY(90deg);
+    }
+}
+
+{% endhighlight %} 
+
+- The .2s delay on div.back is so that *after* the front panel rotates out, the back panel will then rotate in. This will crease a smoother look. The end result is a smooth looking transition that creates the appearance of cards flipping over.
+
+
+### **Closing Thoughts** ###
+
+That might have been the most intense tutorial series yet. I feel like I learned quite a bit, but I'm definitely going to have to do a lot of studying, review, and practice. Still, I *do* feel like we did some pretty cool projects: a MarioKart animation; a flipping tiles animation; an animated popup; and a little animated shopping cart. 
