@@ -1,247 +1,100 @@
 ---
 layout: post
-title: "Day 12: MDN Layout part 1: CSS Layout Overview"
+title: "Day 13: MDN Layout part 2: Positioning"
 date: 2016-12-4
 categories: CSS
 ---
 
-Today I'm going to be diving into the Mozilla Developer Network and their guide to [CSS Layout](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout). 
+Today's MDN unit talks about [Positioning](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Floats are actually before Positioning in their curriculum, but after spending a few hours playing with absolute and relative positioning in codepen last night, I think it clicked. I'm going to skip straight to positioning so that I can drive than home and then go back to Floats tomorrow. 
+
+## Positioning ##
+
+- Positioning allows you to take elements out of normal document flow and change their behavior.
+
+### Document Flow ### 
+
+- By default, block level elements take up 100% of the width of it's parent element and are as tall as the contained content.
+    - By default, block level elements are laid out verticallly in the viewport and sit on top of eachother, separated by the margin that you've set.
+
+- Inline elements are as tall and as wide as the content.
+    - You can't set width or height, they sit inside the content of block level elements. 
+    - If you want to control the size, you need to use display: block;
+    - Inline elements don't appear on new lines, but sit next to one another. 
+
+- If two adjacent elements both have a set margin then the larger of the two remains while the other collapses.
 
 
-##  CSS Layout Overview ## 
 
+### Introducing Positioning ###
 
-We can overried the normal layout flow using the following techniques:
-- The position property.
-    - static is the default in normal flow, but you cause elements to be laid out differently by using other values.
-- Floats.
-    - Applying a float value such as left can cause block level elements to line up next to eachother instead of on top of eachother.
-- The display property. 
-    - Standard values such as block, inline, or inline-block can change how elements behave in normal flow. 
-    - Specialised values allow us to lay out elements in completely different ways using tools like flexbox.
+- Allows you to orride document flow behavior. 
 
-### Floats ###
-
-- Allow elements to float to the left or right, rather than on top of eachother.
-- Main use it to lay out columns and float text around an image. 
-- The float property has four possible values:
-    - left: floats elements to the left.
-    - right: floats elements to the right.
-    - none: default value with no floating at all.
-    - inherit: the value of the float should be inherited from the parent element.
-- The article shows how you can use floats to create a simple two column layout. It begins with the following HTML:
-```HTML
-<h1>2 column layout example</h1>
-
-<div>
-  <h2>first column</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Null luctus aliquam dolor, eu lachinia lorem placerat valputate.</p>
-</div>
-
-<div>
-  <h2>Second Column</h2>
-  <p>Nam vulputate diam nec tempor bibendum. Donec lucutus augue eget malesuada ultrices. Phasellus turpis est, posuere sit amet dapibus ut.</p>
-</div>
-```
-
-- To create a two column layout, we float both divs, one to the left and the other to the right. The width value allows to fit on the same line.
-```CSS
-div:nth-of-type(1) {
-  width: 48%;
-  float: left;
-}
-
-div:nth-of-type(2) {
-  width: 48%;
-  float: right;
-}
-```
-
-
-### Positioning Techniques ###
-
-- The article provides the following examples that all use the same code:
-{% highlight HTML %}
-
-<h1>Positioning</h1>
-
-<p>I am a basic block level element.</p>
-<p class="positioned">I am a basic block level element</p>
-<p>I am a basic block level element</p>
-
-{% endhighlight %}
-
-{% highlight CSS %}
-
-body {
-  width: 500px;
-  margin: 0 auto;
-}
-
-p {
-  background: aqua;
-  border: 3px solid blue;
-  padding: 10px;
-  margin: 10px;
-}
-
-span {
-  background: red;
-  border: 1px solid black;
-}
-
-{% endhighlight %}
+**Static Positioning**
+- Default positioning for every element. 
 
 **Relative Positioning**
 
-- Relative positioning is used to make small layout tweaks, such as moving an element down so that it lines up with a text label.
-- This can be demonstrated by the following code: 
+- Similar to static positioning, exccept you can move elements out of their normal layout flow. 
+- position: relative;
+
+**Introducing top, bottom, left, and right**
+
+- top, bottom, left, and right are used to specify where you want to move the elements. 
+
 ```CSS
-.positioned {
-  position: relative; 
-  background: yellow;
-  top: 30px;
-  left: 30px;
+.positioned{
+    positioned: relative;
+    top: 30px;  
+    left: 30px;
 }
 ```
-- Setting the position to relative doesn't do anything by itself, but adding the top and left properties pushes our element down and to the right by 30px in each direction.
-- You can also use percentages, ems, etc. by only adding top: 50%; we can move the positioned block directly below the third block.
+- In this example, the positioned element will get pushed down from the top by 30px pixels, and away from the left by 30px; So it moves down and to the right.
+- In addition, there will be a gap in the document flow where the element had previously been.
 
 **Absolute Positioning**
 
-- Absolute positioning moves elements anywhere on the webpage.
-- Often used in conjunction with relative positioning and floats.
-- Even using the otherwise same code as before, we get very different results.
+- If you now change the previous code to "positioned: absolute;" then it will instead be move up and to left, so that it's 30px away from the top and left. 
+    - Rather specifying the direction that the elements should move (as in relative positioning) it specifies the distance the element should be from the containing elements sides.
+- Also, the other elements have filled the gap where the positioned element had previous been.
+    - This is because absolutely positioned elements are no longer in normal document flow. It now sits on own layer, separate from everything else.
+    - Useful for making popup information boxes, control menus, rollover panels, UI features that can be dragged and dropped, etc.
+
+**Positioning Contexts**
+
+- The default containing element is <html>, so in the previous example, it was positioned relative to the <html> container.
+- You can override this by adding "position: relative;" to one of the other ancestors of our element.
+
+**Introducing Z-Index**
+
+- If you have overlapping elements, you can change the stacking order by using the Z-index.
+- Z-index is a reference to the z-axis. 
+- By default, all elements have a z-index of auto (this is effectively 0), and higher values move them forward on the z-axis.
+- If all else is default, you can move an element to the top by using "z-index: 1;"
+
+**Fixed Positioning**
+
+- This works similar to absolute, except it *doesn't* positioned an element relative to <html> (or it's nearest positioned ancestor).
+- fixed positioning positions an element relative to the viewport. 
+- Allows you create UI elements that are fixed on the screen (such as fixed navigational bars, or those annoys ads that follow you as your scrool down the page).
+- The article uses the following example code:
 ```CSS
-.positioned {
-  position: absolute;
-  background: yellow;
-  top: 30px;
-  left: 30px;
+h1{
+    position: fixed;
+    top: 0px;
+    width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 10px;
 }
 ```
-- In this situation, the other two elements now sit together as if the sibling element doesn't exist. Meanwhile, the positioned element has moved towards the top left corner.
-    - In absolute positioning, top and left don't specify how much the element will move relative to it's original position.
-    - top and left specify the distance the element should sit from the top and left sides of the pages boundaries. 
-        - Using percentage values of 0% will place it in the top left-corner. Similar, setting bottom and right to 0% would position in the bottom-right corner.
+- This takes the h1 element out of normal document flow so the other elements shift upward. You can add a margin to the top of the first element to prevent overlap.
+- when scrolling down, the h1 element will remain positioned at the very top of the viewport.
 
-### CSS tables ###
+**Experimental: Position Sticky**
+- Essentially a hybrid between relative and fixed position.
+- Allows a positioned element to act like it's relatively positioned until it is scrolled to a certain point, then it becomes fixed.
+- [Not very widely supported by browsers](http://caniuse.com/#search=sticky).
 
-- CSS tables let you layout elements like they were in a table, without any of the issues associated with HTML tables (inflexible, heavy on markup, difficult to debug, problematic for screen readers).
-- The CSS involved is fairly ordinary except for the use of the display property. The keywords table, table-row, table cell, and table-caption essentially tell the form to act like an HTML table.
-- The paragraph has been given display: table-caption; wwhich makes it act like a table caption, and then caption-side: bottom; so that it aligns below the table.
+That's the end of the first article on positioning. There's a second article entitled [Practical positioning examples](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Practical_positioning_examples)
 
-```HTML
-<form>
-  <p>First of all, tell us your name and age.</p>
-  <div>
-    <label for="fname">First name:</label>
-    <input type="text" id="fname"/>
-  </div>
-  <div>
-    <label for="lname">Last name: </label>
-    <input type="text" id="lname"/>
-  </div>
-  <div>
-    <label for="age">Age: </label>
-    <input type="text" id="age"/>
-  </div>
-  ```
-
-  ```CSS
-  html {
-  font-family: sans-serif;
-}
-
-form {
-  display: table;
-  margin: 0 auto;
-}
-
-form div {
-  display: table-row;
-}
-
-form label, form input {
-  display: table-cell;
-  margin-bottom: 10px;
-}
-
-form label {
-  width: 200px;
-  padding-right: 5%;
-  text-align: right;
-}
-
-form input {
-  width: 300px;
-}
-
-form p {
-  display: table-caption;
-  caption-side: bottom;
-  width: 300px;
-  color: #999;
-  font-style: italic;
-}
-```
-
-### Flexible Boxes ###
-
-- This section only gives a brief description of flexbox and shows an example in action. Here is the code for the example:
-
-```HTML
-<section>
-  <div>This is a box</div>
-   <div>This is a box</div>
-   <div>This is a box</div>
-</section>
-
-<button class="create">Create box</button>
-<button class="reset">Reset demo</button>
-```
-
-```CSS
-html {
-  font-family: sans-serif;
-}
-
-section{
-  width: 93%;
-  height: 240px;
-  margin: 20px auto;
-  background: purple;
-  display: flex;
-}
-
-div {
-  color: white;
-  background: orange;
-  flex: 1;
-  margin-right: 10px;
-  text-shadow: 1px 1px 1px black;
-}
-
-div:last-child {
-  margin-right: 0;
-}
-
-section, div {
-  border: 5px solid rgba(0,0,0,0.85);
-  padding: 10px;
-}
-```
-
-- display: flex: tells the <section> element's child elements to be laid out as flex boxes. 
-    - This means that the child elements will, by default, stretch to fill the abilable height of the parent and be laid out in a row with enough width to wrap their content.
-- flex: 1; tells each <div> element to take up an equal amount of space in the row.
-
-### Grid layout ###
-
-- Experimental feature without widespread browser support. 
-- Define a grid and then define which parts of the content sit within each area of the grid.
-
-
-## Closing Throughts ##
-
- That was a pretty good overview. I like the interactive examples that they provide and I feel like it helped me understand positioning a bit better. I'm also excited about flexboxes, but I'm deliberately waiting until I nail this other stuff first. The remaining units in the series are: Floats, Positioning, Practical positioning examples, Flexbox, and Grids.   
+## Practical Positioning Examples ## 
