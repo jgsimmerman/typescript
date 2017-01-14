@@ -1,8 +1,8 @@
 # Site Settings
-title: 30 Days of Code
+title: TypeScript and Free Code Camp 
 email: jgsimmerman@gmail.com
 description: >
-  30 Day Deep Dive into Coding.
+    Learning TypeScript by following the Free Code Camp path.  
 baseurl: "/30days"
 url: "http://ibws.com/30days"
 twitter_username: jgsimmerman
